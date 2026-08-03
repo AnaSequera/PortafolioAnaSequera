@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Sequera Zárate — Automation & AI Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151a;
+    --bg-grid:#171b21;
+    --panel:#1a1f26;
+    --panel-border:#2a313b;
+    --panel-border-hover:#3a4453;
+    --text:#e7eaee;
+    --text-dim:#8a93a1;
+    --text-dimmer:#5b6472;
+    --amber:#f5a623;
+    --teal:#3ddc97;
+    --line:#333c48;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(circle at 1px 1px, #232a33 1px, transparent 0) 0 0/28px 28px,
+      var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  ::selection{background:var(--amber); color:#14181d;}
+
+  /* ---------- status bar ---------- */
+  .statusbar{
+    display:flex; align-items:center; gap:10px;
+    padding:18px 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--text-dimmer);
+    text-transform:uppercase;
+  }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 0 rgba(61,220,151,0.6);
+    animation:pulse 2.2s infinite;
+    flex-shrink:0;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(61,220,151,0.5);}
+    70%{box-shadow:0 0 0 7px rgba(61,220,151,0);}
+    100%{box-shadow:0 0 0 0 rgba(61,220,151,0);}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:760px;
+    margin:0 auto;
+    padding:60px 24px 70px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:"▸"; color:var(--amber);}
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(2.4rem, 7vw, 3.6rem);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  h1 span{color:var(--text-dim); font-weight:500;}
+  .lede{
+    font-size:clamp(1.05rem, 2.4vw, 1.25rem);
+    color:var(--text-dim);
+    max-width:56ch;
+    margin-bottom:30px;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-dim);
+    border:1px solid var(--panel-border);
+    padding:6px 12px;
+    border-radius:20px;
+    background:var(--panel);
+  }
+
+  /* ---------- section shared ---------- */
+  section{max-width:760px; margin:0 auto; padding:0 24px;}
+  .section-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:26px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-dimmer);
+  }
+  .section-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.5rem;
+    font-weight:600;
+  }
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg, var(--panel-border), transparent);
+    max-width:760px; margin:70px auto; margin-left:24px; margin-right:24px;
+  }
+
+  /* ---------- thesis ---------- */
+  .thesis-block{
+    border-left:2px solid var(--amber);
+    padding:4px 0 4px 22px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(1.15rem, 2.6vw, 1.4rem);
+    font-weight:500;
+    color:var(--text);
+    margin-bottom:24px;
+  }
+  .thesis-sub{
+    color:var(--text-dim);
+    max-width:60ch;
+    font-size:0.98rem;
+  }
+
+  /* ---------- pipeline / projects ---------- */
+  .pipeline{
+    position:relative;
+    padding-left:26px;
+  }
+  .pipeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:10px; bottom:10px;
+    width:1px;
+    background:repeating-linear-gradient(
+      to bottom, var(--line) 0 6px, transparent 6px 12px
+    );
+  }
+  .node{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    padding:22px 22px 20px;
+    margin-bottom:18px;
+    transition:border-color 0.25s ease, transform 0.25s ease;
+  }
+  .node:hover{border-color:var(--panel-border-hover); transform:translateX(2px);}
+  .node::before{
+    content:"";
+    position:absolute;
+    left:-26px; top:26px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--teal);
+  }
+  .node.amber::before{border-color:var(--amber);}
+  .node-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:12px; margin-bottom:10px; flex-wrap:wrap;
+  }
+  .node-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.08rem;
+  }
+  .node-status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--teal);
+    white-space:nowrap;
+    display:flex; align-items:center; gap:5px;
+  }
+  .node.amber .node-status{color:var(--amber);}
+  .node-status::before{content:"●"; font-size:8px;}
+  .node-desc{
+    color:var(--text-dim);
+    font-size:0.94rem;
+    margin-bottom:14px;
+  }
+  .node-desc b{color:var(--text); font-weight:600;}
+  .node-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:5px;
+  }
+  .node-label.problema{color:#e35d5d;}
+  .node-label.solucion{color:var(--teal);}
+  .node.amber .node-label.solucion{color:var(--amber);}
+  .node-problem{
+    color:var(--text-dim);
+    font-size:0.92rem;
+    margin-bottom:14px;
+    padding-bottom:14px;
+    border-bottom:1px dashed var(--panel-border);
+  }
+  .tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--text-dimmer);
+    border:1px solid var(--panel-border);
+    padding:3px 8px;
+    border-radius:4px;
+  }
+
+  /* ---------- stack ---------- */
+  .stack-grid{
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .stack-item{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--text-dim);
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    padding:8px 14px;
+    border-radius:6px;
+  }
+
+  /* ---------- footer / contact ---------- */
+  .contact{
+    text-align:left;
+    padding-bottom:90px;
+  }
+  .contact-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.8rem, 5vw, 2.4rem);
+    margin-bottom:14px;
+  }
+  .contact-sub{color:var(--text-dim); margin-bottom:28px; max-width:52ch;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text);
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    padding:11px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .contact-links a:hover{border-color:var(--amber); background:#1f2530;}
+  .footnote{
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-dimmer);
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  @media (max-width:600px){
+    .statusbar{padding:16px 18px; font-size:10.5px;}
+    .hero{padding:44px 18px 50px;}
+    section{padding:0 18px;}
+    .divider{margin-left:18px; margin-right:18px; margin-top:56px; margin-bottom:56px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <span class="dot"></span> SYSTEM STATUS: ONLINE — READY FOR NEW WORKFLOWS
+  </div>
+
+  <div class="hero reveal">
+    <div class="eyebrow">Automation & AI Builder</div>
+    <h1>Ana Sequera Zárate<br><span>construyo los sistemas que hacen el trabajo manual innecesario.</span></h1>
+    <p class="lede">Detecto procesos rotos, repetitivos o que se hacen a mano — y los rediseño de raíz con automatización, IA e integraciones que corren completado de verdad, no en una demo.</p>
+    <div class="meta-row">
+      <span class="chip">Valencia, España</span>
+      <span class="chip">100% remoto</span>
+      <span class="chip">Técnica de Innovación @ ICV</span>
+    </div>
+  </div>
+
+  <section class="reveal">
+    <div class="thesis-block">
+      "No parcheo: entiendo por qué algo está roto y lo arreglo desde first principles."
+    </div>
+    <p class="thesis-sub">Vengo del mundo de la automatización aplicada dentro de una organización real, no de un curso ni de un side project aislado. Cada uno de los sistemas de abajo está corriendo — o corrió — completado, con datos reales y personas reales dependiendo de que funcione.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <span class="section-title">Lo que he construido</span>
+    </div>
+
+    <div class="pipeline">
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Pipeline Zoom → YouTube → Moodle</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Cada grabación de mentoría había que descargarla, subirla a mano y publicarla en la plataforma de formación — un proceso manual y lento, repetido decenas de veces por edición.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Automatización end-to-end en <b>n8n</b>: toma la grabación de Zoom, pasa por un flujo de aprobación por email (publicar/descartar) y la deja lista para publicarse — sin intervención manual. Migré el pipeline completo de un proveedor de video a otro en un día, incluyendo diagnóstico y arreglo de fallos de autenticación OAuth2 y de encoding.</p>
+        <div class="tags">
+          <span class="tag">n8n</span>
+          <span class="tag">Zoom API</span>
+          <span class="tag">YouTube API</span>
+          <span class="tag">Google Sheets API</span>
+          <span class="tag">OAuth2</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Detección automática de subvenciones</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>El equipo revisaba manualmente convocatorias de subvenciones dispersas en varias fuentes, y la automatización anterior (en Make) se quedó sin créditos y dejó de funcionar.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Migré la automatización a <b>n8n</b>: rastrea convocatorias (BDNS + RSS), las clasifica con un modelo de IA contra criterios reales de negocio (importe, cofinanciación, temática) y entrega solo lo que de verdad califica — con newsletter diario automático al equipo.</p>
+        <div class="tags">
+          <span class="tag">n8n</span>
+          <span class="tag">OpenAI API</span>
+          <span class="tag">API pública BDNS</span>
+          <span class="tag">Clasificación con LLM</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Dashboard de autoinscripción a mentorías</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>~900 personas necesitaban elegir entre ~32 grupos de mentoría con cupos limitados, sin un sistema que evitara duplicados ni diera visibilidad de plazas disponibles en tiempo real.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Diseñé y construí desde cero una plataforma de reserva con panel de administración, exportación directa al formato de matriculación de Moodle, y envío masivo integrado con WhatsApp (WOZTELL) y email como respaldo. Migrada a Cloudflare Workers + D1 para eliminar los límites de una cuenta personal.</p>
+        <div class="tags">
+          <span class="tag">Cloudflare Workers</span>
+          <span class="tag">D1 (SQL)</span>
+          <span class="tag">WOZTELL / WhatsApp API</span>
+          <span class="tag">Acumbamail API</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Chatbot multilingüe (WhatsApp / Instagram)</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>El equipo respondía a mano las mismas preguntas frecuentes en cuatro idiomas distintos en Instagram, sin poder escalar la atención.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Construí y desplegué un chatbot de FAQ multilenguaje (ES/EN/FR/AR) sobre WOZTELL, resolviendo un problema de arquitectura de triggers (keywords vs. payloads) que bloqueaba las respuestas correctas. Actualmente en extensión para auto-responder comentarios.</p>
+        <div class="tags">
+          <span class="tag">WOZTELL</span>
+          <span class="tag">Multilenguaje</span>
+          <span class="tag">Meta / Instagram</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Limpiador de bases de datos de contacto</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Los envíos masivos de email dependían por completo de un servicio de pago para validar contactos, y aun así llegaban muchos rebotes que dañaban la reputación del dominio.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Herramienta propia en <b>Python</b> con verificación SMTP en paralelo (de 2-5 seg/email a 0.1-0.3 seg/email), validada contra una herramienta de referencia con <b>100% de precisión</b> en los descartes. Procesa cientos de listas de contacto reales cada semana.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SMTP</span>
+          <span class="tag">ThreadPoolExecutor</span>
+          <span class="tag">Streamlit</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">De formulario a PDF firmable, automático</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Cada solicitud recibida por formulario requería que alguien la leyera, generara el documento correspondiente a mano y lo enviara por email — tiempo perdido en tareas repetitivas de bajo valor.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Automatización en <b>Google Apps Script</b> que toma cada respuesta de formulario, genera el PDF correspondiente y lo entrega por email automáticamente, con documentación de uso para el equipo.</p>
+        <div class="tags">
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Generación de PDF</span>
+          <span class="tag">Automatización de email</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Auditoría de accesibilidad (WCAG 2.1 AA)</span>
+          <span class="node-status">completado</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Formularios usados por personas con discapacidad visual no cumplían con estándares de accesibilidad, dejando fuera a parte del público al que debían servir.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Revisé y corregí los formularios en Jotform contra el estándar WCAG 2.1 AA, asegurando que fueran usables con lectores de pantalla y navegación por teclado.</p>
+        <div class="tags">
+          <span class="tag">WCAG 2.1 AA</span>
+          <span class="tag">Jotform</span>
+          <span class="tag">Accesibilidad</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <span class="section-title">Con qué trabajo</span>
+    </div>
+    <div class="stack-grid">
+      <span class="stack-item">n8n</span>
+      <span class="stack-item">Make</span>
+      <span class="stack-item">Python</span>
+      <span class="stack-item">Cloudflare Workers</span>
+      <span class="stack-item">D1 / SQL</span>
+      <span class="stack-item">OpenAI API</span>
+      <span class="stack-item">LangChain</span>
+      <span class="stack-item">WOZTELL</span>
+      <span class="stack-item">GoHighLevel</span>
+      <span class="stack-item">HubSpot</span>
+      <span class="stack-item">Twilio</span>
+      <span class="stack-item">Stripe API</span>
+      <span class="stack-item">Google Sheets API</span>
+      <span class="stack-item">Airtable</span>
+      <span class="stack-item">Notion API</span>
+      <span class="stack-item">Retool</span>
+      <span class="stack-item">Zoom / YouTube API</span>
+      <span class="stack-item">WhatsApp Cloud API</span>
+      <span class="stack-item">Git / GitHub</span>
+      <span class="stack-item">Streamlit</span>
+      <span class="stack-item">Claude Code</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="contact reveal">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <span class="section-title">Conectemos</span>
+    </div>
+    <p class="contact-sub">Si tienes un proceso roto que nadie quiere tocar, probablemente sea justo el tipo de problema que me gusta resolver.</p>
+    <div class="contact-links">
+      <a href="mailto:anasequerazarate@gmail.com">✉ anasequerazarate@gmail.com</a>
+      <a href="https://linkedin.com/in/anajsz" target="_blank" rel="noopener">in/anajsz</a>
+    </div>
+  </section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.1});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
