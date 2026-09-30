@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ana Sequera Zárate — Automation & AI Builder</title>
+<title>Ana Sequera Zárate — Product & AI Builder</title>
+<meta name="description" content="Ana Sequera Zárate: detecto necesidades reales, defino el MVP y lo llevo a producción con IA y automatización. Casos con problema, solución e impacto.">
+<meta property="og:title" content="Ana Sequera Zárate — Product & AI Builder">
+<meta property="og:description" content="Herramientas en producción usadas por cientos de personas: problema, solución e impacto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -284,18 +287,45 @@
     section{padding:0 18px;}
     .divider{margin-left:18px; margin-right:18px; margin-top:56px; margin-bottom:56px;}
   }
+
+  /* ---------- v2 additions ---------- */
+  .node-impact{
+    color:var(--text);
+    font-size:0.92rem;
+    margin:-2px 0 14px;
+    padding-top:12px;
+    border-top:1px dashed var(--panel-border);
+  }
+  .node-label.impacto{color:var(--amber);}
+  .node.featured{border-color:#4a3a1c;}
+  .metric{font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--amber);}
+  .steps{list-style:none; counter-reset:step; display:grid; gap:14px;}
+  .steps li{counter-increment:step; display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:baseline;}
+  .steps li::before{content:"0" counter(step); font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--amber);}
+  .steps b{font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--text);}
+  .steps span{color:var(--text-dim); font-size:0.95rem;}
+  .lab{display:grid; gap:12px;}
+  .lab-item{border-left:2px solid var(--panel-border); padding:4px 0 4px 16px;}
+  .lab-item b{font-family:'Space Grotesk', sans-serif; font-weight:600; display:block; margin-bottom:2px;}
+  .lab-item p{color:var(--text-dim); font-size:0.93rem;}
+  a:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .dot{animation:none;}
+    .node{transition:none;}
+  }
 </style>
-</head>
+
 <body>
 
   <div class="statusbar">
-    <span class="dot"></span> SYSTEM STATUS: ONLINE — READY FOR NEW WORKFLOWS
+    <span class="dot"></span> SYSTEM STATUS: ONLINE — READY FOR NEW PRODUCTS
   </div>
 
   <div class="hero reveal">
-    <div class="eyebrow">Automation & AI Builder</div>
-    <h1>Ana Sequera Zárate<br><span>construyo los sistemas que hacen el trabajo manual innecesario.</span></h1>
-    <p class="lede">Detecto procesos rotos, repetitivos o que se hacen a mano — y los rediseño de raíz con automatización, IA e integraciones que corren completado de verdad, no en una demo.</p>
+    <div class="eyebrow">Product & AI Builder</div>
+    <h1>Ana Sequera Zárate<br><span>convierto necesidades reales en producto funcionando.</span></h1>
+    <p class="lede">Entiendo el problema con las personas que lo sufren, defino el MVP justo, lo construyo con IA, automatización e integraciones, y lo llevo a producción midiendo su impacto. Sin sobreingeniería y sin quedarme en la demo.</p>
     <div class="meta-row">
       <span class="chip">Valencia, España</span>
       <span class="chip">100% remoto</span>
@@ -305,9 +335,9 @@
 
   <section class="reveal">
     <div class="thesis-block">
-      "No parcheo: entiendo por qué algo está roto y lo arreglo desde first principles."
+      "No parcheo: entiendo por qué algo está roto y lo arreglo desde la raíz."
     </div>
-    <p class="thesis-sub">Vengo del mundo de la automatización aplicada dentro de una organización real, no de un curso ni de un side project aislado. Cada uno de los sistemas de abajo está corriendo — o corrió — completado, con datos reales y personas reales dependiendo de que funcione.</p>
+    <p class="thesis-sub">Todo lo de abajo lo he construido o lo estoy construyendo dentro de una organización real, con datos reales y personas que dependen de que funcione. Cada caso sigue la misma estructura: el problema, lo que hice y lo que cambió.</p>
   </section>
 
   <div class="divider"></div>
@@ -320,73 +350,98 @@
 
     <div class="pipeline">
 
-      <div class="node">
+      <div class="node featured">
         <div class="node-top">
-          <span class="node-title">Pipeline Zoom → YouTube → Moodle</span>
-          <span class="node-status">completado</span>
+          <span class="node-title">Plataforma de mentorías y coaching</span>
+          <span class="node-status">en producción</span>
         </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>Cada grabación de mentoría había que descargarla, subirla a mano y publicarla en la plataforma de formación — un proceso manual y lento, repetido decenas de veces por edición.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Automatización end-to-end en <b>n8n</b>: toma la grabación de Zoom, pasa por un flujo de aprobación por email (publicar/descartar) y la deja lista para publicarse — sin intervención manual. Migré el pipeline completo de un proveedor de video a otro en un día, incluyendo diagnóstico y arreglo de fallos de autenticación OAuth2 y de encoding.</p>
-        <div class="tags">
-          <span class="tag">n8n</span>
-          <span class="tag">Zoom API</span>
-          <span class="tag">YouTube API</span>
-          <span class="tag">Google Sheets API</span>
-          <span class="tag">OAuth2</span>
-        </div>
-      </div>
-
-      <div class="node">
-        <div class="node-top">
-          <span class="node-title">Detección automática de subvenciones</span>
-          <span class="node-status">completado</span>
-        </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>El equipo revisaba manualmente convocatorias de subvenciones dispersas en varias fuentes, y la automatización anterior (en Make) se quedó sin créditos y dejó de funcionar.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Migré la automatización a <b>n8n</b>: rastrea convocatorias (BDNS + RSS), las clasifica con un modelo de IA contra criterios reales de negocio (importe, cofinanciación, temática) y entrega solo lo que de verdad califica — con newsletter diario automático al equipo.</p>
-        <div class="tags">
-          <span class="tag">n8n</span>
-          <span class="tag">OpenAI API</span>
-          <span class="tag">API pública BDNS</span>
-          <span class="tag">Clasificación con LLM</span>
-        </div>
-      </div>
-
-      <div class="node">
-        <div class="node-top">
-          <span class="node-title">Dashboard de autoinscripción a mentorías</span>
-          <span class="node-status">completado</span>
-        </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>~900 personas necesitaban elegir entre ~32 grupos de mentoría con cupos limitados, sin un sistema que evitara duplicados ni diera visibilidad de plazas disponibles en tiempo real.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Diseñé y construí desde cero una plataforma de reserva con panel de administración, exportación directa al formato de matriculación de Moodle, y envío masivo integrado con WhatsApp (WOZTELL) y email como respaldo. Migrada a Cloudflare Workers + D1 para eliminar los límites de una cuenta personal.</p>
+        <p class="node-problem"><span class="node-label problema">Problema</span>~900 participantes tenían que repartirse en grupos de mentoría con cupos limitados, en cuatro idiomas, sin un sistema que evitara duplicados ni mostrara plazas libres en tiempo real. La inscripción se quedaba muy por debajo de la capacidad.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Hablé con el equipo para entender dónde se perdía la gente, definí un MVP y lo construí desde cero. Hoy es una familia de <b>12 Workers de Cloudflare con base de datos D1</b>: mentorías y coaching en español, inglés, francés y árabe (de derecha a izquierda), para programas presenciales y regionales, con panel de administración, exportación de matrículas a Moodle y avisos por WhatsApp. Siguiente paso: una única puerta de entrada para todos los programas.</p>
+        <p class="node-impact"><span class="node-label impacto">Impacto</span>La ocupación de los grupos pasó del <span class="metric">20%</span> al <span class="metric">71%</span>.</p>
         <div class="tags">
           <span class="tag">Cloudflare Workers</span>
           <span class="tag">D1 (SQL)</span>
-          <span class="tag">WOZTELL / WhatsApp API</span>
-          <span class="tag">Acumbamail API</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">WhatsApp API (Woztell)</span>
+          <span class="tag">Moodle</span>
+          <span class="tag">RTL / árabe</span>
+        </div>
+      </div>
+
+      <div class="node amber">
+        <div class="node-top">
+          <span class="node-title">Taller 7 Pasos para emprendedores</span>
+          <span class="node-status">en desarrollo</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>La metodología de emprendimiento de la entidad vivía en un cuadernillo en papel: difícil de seguir desde el móvil, sin acompañamiento entre sesiones y sin un resultado reutilizable para el emprendedor.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Estoy convirtiendo el cuadernillo en una <b>app web gamificada</b> pensada para móvil: el emprendedor avanza por estaciones, puede dictar sus respuestas por voz, recibe ayuda de una IA open source de coste cero y guarda su avance con un enlace personal. Al final descarga su cuadernillo en PDF y su Business Model Canvas. Valido el alcance con el autor del método e itero la experiencia con UX. Siguiente paso: integrarla con Moodle y con la plataforma de mentorías.</p>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Wrangler</span>
+          <span class="tag">Cloudflare Workers</span>
+          <span class="tag">IA open source</span>
+          <span class="tag">Dictado por voz</span>
+          <span class="tag">PDF</span>
         </div>
       </div>
 
       <div class="node">
         <div class="node-top">
-          <span class="node-title">Chatbot multilingüe (WhatsApp / Instagram)</span>
+          <span class="node-title">Inteligencia de subvenciones</span>
+          <span class="node-status">en producción</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>El equipo revisaba a mano convocatorias dispersas en varias fuentes, y la automatización anterior (seis escenarios en Make) se quedó sin créditos y dejó de funcionar.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Migré el pipeline a <b>n8n</b> y construí un flujo nuevo que reúne ayudas de <b>BDNS, BOE, TED, Funding & Tenders y Grants.gov</b>, las clasifica con GPT-4o según importe, cofinanciación y temática, y las vuelca en Google Sheets. Tiene estado persistente, paginación y filtros por palabra clave.</p>
+        <p class="node-impact"><span class="node-label impacto">Impacto</span><span class="metric">5 fuentes</span> nacionales, europeas e internacionales revisadas y filtradas sin intervención manual.</p>
+        <div class="tags">
+          <span class="tag">n8n</span>
+          <span class="tag">GPT-4o</span>
+          <span class="tag">APIs BDNS / BOE / TED</span>
+          <span class="tag">Grants.gov</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Captación y mensajería por WhatsApp</span>
+          <span class="node-status">en producción</span>
+        </div>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Las campañas de captación en Meta generaban contactos que había que dar de alta y contactar a mano, y una restricción de la cuenta de WhatsApp Business de marketing llegó a bloquear los envíos.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Flujos de opt-in que toman los leads de la campaña, envían plantillas vía <b>Woztell</b> en lotes y los añaden a Acumbamail, con un recorrido que lleva de la inscripción al acuerdo de participación y al grupo de WhatsApp. Diseñé un bot de consentimiento multilingüe de 40 nodos, auditado en 16 rondas, y reorganicé las cuentas por idioma con límites diarios para recuperar los envíos tras la restricción.</p>
+        <div class="tags">
+          <span class="tag">n8n</span>
+          <span class="tag">Woztell</span>
+          <span class="tag">WhatsApp Business API</span>
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Jotform</span>
+          <span class="tag">Acumbamail</span>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-top">
+          <span class="node-title">Consolidación y cruce de datos</span>
           <span class="node-status">completado</span>
         </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>El equipo respondía a mano las mismas preguntas frecuentes en cuatro idiomas distintos en Instagram, sin poder escalar la atención.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Construí y desplegué un chatbot de FAQ multilenguaje (ES/EN/FR/AR) sobre WOZTELL, resolviendo un problema de arquitectura de triggers (keywords vs. payloads) que bloqueaba las respuestas correctas. Actualmente en extensión para auto-responder comentarios.</p>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Los contactos de la entidad estaban repartidos en cientos de archivos y los acuerdos firmados no estaban vinculados a los formularios de inscripción.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Script de <b>Google Apps Script</b> que consolidó ~300 archivos en una sola base organizada por continente, y scripts de <b>Python</b> que emparejaron los acuerdos firmados con sus formularios.</p>
+        <p class="node-impact"><span class="node-label impacto">Impacto</span><span class="metric">58.238</span> contactos consolidados y <span class="metric">94%</span> de ~675 acuerdos emparejados automáticamente.</p>
         <div class="tags">
-          <span class="tag">WOZTELL</span>
-          <span class="tag">Multilenguaje</span>
-          <span class="tag">Meta / Instagram</span>
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Python</span>
+          <span class="tag">Google Sheets</span>
         </div>
       </div>
 
       <div class="node">
         <div class="node-top">
           <span class="node-title">Limpiador de bases de datos de contacto</span>
-          <span class="node-status">completado</span>
+          <span class="node-status">en producción</span>
         </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>Los envíos masivos de email dependían por completo de un servicio de pago para validar contactos, y aun así llegaban muchos rebotes que dañaban la reputación del dominio.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Herramienta propia en <b>Python</b> con verificación SMTP en paralelo (de 2-5 seg/email a 0.1-0.3 seg/email), validada contra una herramienta de referencia con <b>100% de precisión</b> en los descartes. Procesa cientos de listas de contacto reales cada semana.</p>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Los envíos masivos dependían de un servicio de pago para validar contactos, y aun así llegaban muchos rebotes que dañaban la reputación del dominio.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Herramienta propia en <b>Python</b> con verificación SMTP en paralelo, validada contra la herramienta de pago de referencia. Procesa listas reales cada semana.</p>
+        <p class="node-impact"><span class="node-label impacto">Impacto</span>De 2-5 s a 0,1-0,3 s por email, con <span class="metric">100%</span> de coincidencia en los descartes frente a la herramienta de pago.</p>
         <div class="tags">
           <span class="tag">Python</span>
           <span class="tag">SMTP</span>
@@ -397,32 +452,35 @@
 
       <div class="node">
         <div class="node-top">
-          <span class="node-title">De formulario a PDF firmable, automático</span>
+          <span class="node-title">Recuperación y monitorización de la web</span>
           <span class="node-status">completado</span>
         </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>Cada solicitud recibida por formulario requería que alguien la leyera, generara el documento correspondiente a mano y lo enviara por email — tiempo perdido en tareas repetitivas de bajo valor.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Automatización en <b>Google Apps Script</b> que toma cada respuesta de formulario, genera el PDF correspondiente y lo entrega por email automáticamente, con documentación de uso para el equipo.</p>
+        <p class="node-problem"><span class="node-label problema">Problema</span>La web corporativa sufrió un ataque y no había forma de enterarse a tiempo de caídas, certificados caducados o cambios sospechosos.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Recuperé la web (credenciales, 2FA, backups y Cloudflare) y monté seis flujos de monitorización en <b>n8n</b>: alertas de email, comprobación diaria de SSL y HTTP, auditoría de WordPress, Cloudflare, revisiones trimestrales y captura de errores, con un mu-plugin en PHP y un panel HTML.</p>
         <div class="tags">
-          <span class="tag">Google Apps Script</span>
-          <span class="tag">Generación de PDF</span>
-          <span class="tag">Automatización de email</span>
+          <span class="tag">n8n</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">PHP</span>
+          <span class="tag">Cloudflare</span>
+          <span class="tag">IONOS</span>
         </div>
       </div>
 
-      <div class="node">
+      <div class="node amber">
         <div class="node-top">
-          <span class="node-title">Auditoría de accesibilidad (WCAG 2.1 AA)</span>
-          <span class="node-status">completado</span>
+          <span class="node-title">Pipeline Zoom → YouTube → Moodle</span>
+          <span class="node-status">en prueba final</span>
         </div>
-        <p class="node-problem"><span class="node-label problema">Problema</span>Formularios usados por personas con discapacidad visual no cumplían con estándares de accesibilidad, dejando fuera a parte del público al que debían servir.</p>
-        <p class="node-desc"><span class="node-label solucion">Solución</span>Revisé y corregí los formularios en Jotform contra el estándar WCAG 2.1 AA, asegurando que fueran usables con lectores de pantalla y navegación por teclado.</p>
+        <p class="node-problem"><span class="node-label problema">Problema</span>Cada grabación de mentoría había que descargarla, subirla a mano y publicarla en la plataforma de formación: un proceso lento que se repetía decenas de veces por edición.</p>
+        <p class="node-desc"><span class="node-label solucion">Solución</span>Automatización end-to-end en <b>n8n</b>: recoge la grabación de Zoom, pasa por una aprobación por email y la publica en YouTube y Moodle. Empezó con Bunny.net y lo sustituí por YouTube por coste. Pendiente: prueba real completa y carga de 30 vídeos anteriores.</p>
         <div class="tags">
-          <span class="tag">WCAG 2.1 AA</span>
-          <span class="tag">Jotform</span>
-          <span class="tag">Accesibilidad</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Zoom webhooks</span>
+          <span class="tag">YouTube API</span>
+          <span class="tag">Moodle webservices</span>
+          <span class="tag">OAuth2</span>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -431,30 +489,73 @@
   <section class="reveal">
     <div class="section-head">
       <span class="section-num mono">02</span>
+      <span class="section-title">Cómo trabajo</span>
+    </div>
+    <ol class="steps">
+      <li><div><b>Entender el problema.</b> <span>Hablo con quien lo sufre, miro los datos y el proceso actual antes de proponer nada.</span></div></li>
+      <li><div><b>Definir el MVP.</b> <span>Recorto el alcance a lo que entrega valor ya, sin cerrar la puerta a lo que vendrá después.</span></div></li>
+      <li><div><b>Prototipar con IA.</b> <span>Uso Claude y otros modelos para acelerar especificación, código, pruebas y documentación, y verifico todo lo que producen.</span></div></li>
+      <li><div><b>Lanzar y acompañar.</b> <span>Pruebo casos límite, pongo en producción y doy soporte a los equipos que lo usan.</span></div></li>
+      <li><div><b>Medir e iterar.</b> <span>Defino qué indica que funciona y ajusto a partir de ahí.</span></div></li>
+    </ol>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <span class="section-title">Laboratorio propio</span>
+    </div>
+    <p class="thesis-sub" style="margin-bottom:22px">Prototipos que construyo de 0 a MVP fuera de mi trabajo, bajo mi marca Conectium.</p>
+    <div class="lab">
+      <div class="lab-item"><b>Asistente de WhatsApp para clínicas dentales</b><p>Triaje de pacientes con IA: entiende el motivo de la consulta y lo deriva al siguiente paso.</p></div>
+      <div class="lab-item"><b>Tarjetas de visita con QR</b><p>App para una empresa familiar con panel de administración y vista pública para cada tarjeta.</p></div>
+      <div class="lab-item"><b>Generador de guiones de vídeo con IA</b><p>A partir de lo que hice en el día, genera guiones cortos en mi tono de voz.</p></div>
+      <div class="lab-item"><b>Resumen semanal de noticias de IA</b><p>Tarea programada que cada lunes lee newsletters y la web, y deja un informe por categorías en Google Drive.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="reveal">
+    <div class="section-head">
+      <span class="section-num mono">04</span>
       <span class="section-title">Con qué trabajo</span>
     </div>
     <div class="stack-grid">
+      <span class="stack-item">Claude / Claude Code</span>
+      <span class="stack-item">OpenAI GPT-4o</span>
+      <span class="stack-item">IA open source</span>
       <span class="stack-item">n8n</span>
       <span class="stack-item">Make</span>
-      <span class="stack-item">Python</span>
+      <span class="stack-item">Google Apps Script</span>
+      <span class="stack-item">JavaScript</span>
+      <span class="stack-item">Node.js / Wrangler</span>
       <span class="stack-item">Cloudflare Workers</span>
       <span class="stack-item">D1 / SQL</span>
-      <span class="stack-item">OpenAI API</span>
+      <span class="stack-item">Python</span>
+      <span class="stack-item">PHP</span>
+      <span class="stack-item">Streamlit</span>
+      <span class="stack-item">Woztell</span>
+      <span class="stack-item">WhatsApp Business API</span>
+      <span class="stack-item">Meta Ads</span>
+      <span class="stack-item">Jotform</span>
+      <span class="stack-item">Acumbamail</span>
+      <span class="stack-item">Moodle</span>
+      <span class="stack-item">Odoo</span>
+      <span class="stack-item">WordPress</span>
+      <span class="stack-item">Zoom / YouTube API</span>
+      <span class="stack-item">Google Workspace</span>
+      <span class="stack-item">Git / GitHub</span>
       <span class="stack-item">LangChain</span>
-      <span class="stack-item">WOZTELL</span>
       <span class="stack-item">GoHighLevel</span>
       <span class="stack-item">HubSpot</span>
       <span class="stack-item">Twilio</span>
       <span class="stack-item">Stripe API</span>
-      <span class="stack-item">Google Sheets API</span>
       <span class="stack-item">Airtable</span>
       <span class="stack-item">Notion API</span>
       <span class="stack-item">Retool</span>
-      <span class="stack-item">Zoom / YouTube API</span>
-      <span class="stack-item">WhatsApp Cloud API</span>
-      <span class="stack-item">Git / GitHub</span>
-      <span class="stack-item">Streamlit</span>
-      <span class="stack-item">Claude Code</span>
     </div>
   </section>
 
@@ -462,25 +563,28 @@
 
   <section class="contact reveal">
     <div class="section-head">
-      <span class="section-num mono">03</span>
+      <span class="section-num mono">05</span>
       <span class="section-title">Conectemos</span>
     </div>
-    <p class="contact-sub">Si tienes un proceso roto que nadie quiere tocar, probablemente sea justo el tipo de problema que me gusta resolver.</p>
+    <p class="contact-sub">Si tienes un proceso roto que nadie quiere tocar, o una idea que necesita llegar a producto, probablemente sea justo el tipo de problema que me gusta resolver.</p>
     <div class="contact-links">
       <a href="mailto:anasequerazarate@gmail.com">✉ anasequerazarate@gmail.com</a>
       <a href="https://linkedin.com/in/anajsz" target="_blank" rel="noopener">in/anajsz</a>
+      <a href="CV_Ana_Sequera.pdf" target="_blank" rel="noopener">Descargar CV (PDF)</a>
     </div>
   </section>
 
 <script>
   const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
-    });
-  }, {threshold:0.1});
-  revealEls.forEach(el=>io.observe(el));
+  if (!('IntersectionObserver' in window)) { revealEls.forEach(el=>el.classList.add('show')); }
+  else {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.1});
+    revealEls.forEach(el=>io.observe(el));
+  }
 </script>
-
 </body>
 </html>
